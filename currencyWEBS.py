@@ -54,6 +54,7 @@ def currency_recording(file_name, column_header, recording_days, time_interval):
         
     f.close
     print("Stop recording EUR currency ...")
+    
 
 
 currency_recording('test.csv','date;time;euro;usd;chf;gbp;rub',1,0.001)
