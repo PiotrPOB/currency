@@ -20,7 +20,7 @@ xpathRUB = '//*[@id="waluta-RUB"]/div[2]/div[4]/span[2]'
 
 
 
-def srap_currency(url, xpath):
+def wrap_currency(url, xpath):
     page = requests.get(url)
     tree= html.fromstring(page.text)
     text_web = tree.xpath(xpath+"/text()")
@@ -38,6 +38,8 @@ def write_currency(*args):
     return currency_line
 
 def currency_recording(file_name, column_header, recording_days, time_interval):
+    # recordind_days - how many days works recording, integer
+    # time_interval - 1 is one record per hour in day
     f = open(file_name, "w")
     f.write(column_header+"\n")
     print("Starting recording EUR currency ...")
@@ -45,7 +47,7 @@ def currency_recording(file_name, column_header, recording_days, time_interval):
         hour_interval = int(time_interval*3600)
         time_interval = int(24/time_interval)
         for j in range(time_interval):
-            currency_records = write_currency(srap_currency(urlEUR, xpathEUR), srap_currency(urlUSD, xpathUSD), srap_currency(urlCHF, xpathCHF), srap_currency(urlGBP, xpathGBP),srap_currency(urlRUB, xpathRUB))
+            currency_records = write_currency(wrap_currency(urlEUR, xpathEUR), wrap_currency(urlUSD, xpathUSD), wrap_currency(urlCHF, xpathCHF), wrap_currency(urlGBP, xpathGBP),wrap_currency(urlRUB, xpathRUB))
             print(currency_records)
             f.write(";".join(currency_records)+"\n")
             time.sleep(hour_interval)
@@ -54,6 +56,6 @@ def currency_recording(file_name, column_header, recording_days, time_interval):
     print("Stop recording EUR currency ...")
 
 
-currency_recording('test.csv','date;time;euro;usd;chf;gbp;rub',1,0.05)
+currency_recording('test.csv','date;time;euro;usd;chf;gbp;rub',1,0.001)
 
 
