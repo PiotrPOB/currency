@@ -44,7 +44,8 @@ def write_currency(*args):
     return currency_line
 
 def currency_recording(file_name, column_header, recording_days, time_interval):
-    # file_name - name of file, extestion should be csv
+    # file_name - name of file, 
+    # file extension should be csv
     # column header - column name - text separated by ;
     # recordind_days - how many days works recording, integer
     # time_interval = 1 - means one record per hour in a day, 0.002 - means recording currency every ca. 3 seconds, 60 minutes = 3600 sec.
