@@ -1,3 +1,5 @@
+#install lxml and reruests library -> command 1. pip install lxml, 2.pip install requests
+
 import datetime
 from lxml import html
 from datetime import date
@@ -43,7 +45,7 @@ def write_currency(*args):
 
 def currency_recording(file_name, column_header, recording_days, time_interval):
     # recordind_days - how many days works recording, integer
-    # time_interval - 1 is one record per hour in day
+    # time_interval = 1 - means one record per hour in a day, 0.002 - means recording currency every ca. 3 seconds, 60 minutes = 3600 sec.
     f = open(file_name, "w")
     f.write(column_header+"\n")
     print("Starting recording EUR currency ...")
