@@ -4,6 +4,9 @@ from datetime import date
 import requests
 import time
 
+#day dictionary
+days = {0: 'Mo', 1 : 'Tu', 2 : 'We', 3: 'Th', 4: 'Fr', 5: 'Sa', 6: 'Su'}
+
 # currnecy source
 urlEUR = 'https://internetowykantor.pl/kurs-euro/'
 urlUSD = 'https://internetowykantor.pl/kurs-dolara/'
@@ -34,7 +37,8 @@ def wrap_currency(url, xpath):
 def write_currency(*args):
     local_time = datetime.datetime.strptime(time.ctime(), "%a %b %d %H:%M:%S %Y")
     local_time = str(local_time).split()
-    currency_line = [local_time[0], local_time[1], *args]
+    day_of_week = days[datetime.datetime.today().weekday()]
+    currency_line = [day_of_week, local_time[0], local_time[1], *args]
     return currency_line
 
 def currency_recording(file_name, column_header, recording_days, time_interval):
@@ -54,9 +58,9 @@ def currency_recording(file_name, column_header, recording_days, time_interval):
         
     f.close
     print("Stop recording EUR currency ...")
-    
 
 
-currency_recording('test.csv','date;time;euro;usd;chf;gbp;rub',1,0.001)
+
+currency_recording('kursy.csv','date;time;euro;usd;chf;gbp;rub',1,0.002)
 
 
