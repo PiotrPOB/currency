@@ -1,5 +1,6 @@
 #install lxml and reruests library -> command 1. pip install lxml, 2.pip install requests
 
+# library
 import datetime
 from lxml import html
 from datetime import date
@@ -24,7 +25,7 @@ xpathGBP = '//*[@id="waluta-GBP"]/div[2]/div[4]/span[2]'
 xpathRUB = '//*[@id="waluta-RUB"]/div[2]/div[4]/span[2]'
 
 
-
+# changing format of data string
 def wrap_currency(url, xpath):
     page = requests.get(url)
     tree= html.fromstring(page.text)
@@ -35,7 +36,7 @@ def wrap_currency(url, xpath):
     text_web = "".join(text_web)
     return text_web
 
-
+# bulding of data frame
 def write_currency(*args):
     local_time = datetime.datetime.strptime(time.ctime(), "%a %b %d %H:%M:%S %Y")
     local_time = str(local_time).split()
@@ -43,6 +44,7 @@ def write_currency(*args):
     currency_line = [day_of_week, local_time[0], local_time[1], *args]
     return currency_line
 
+# recording functiont to pointed file, with column name and time shedudle 
 def currency_recording(file_name, column_header, recording_days, time_interval):
     # file_name - name of file, 
     # file extension should be csv
