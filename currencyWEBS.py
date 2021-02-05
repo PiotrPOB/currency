@@ -51,12 +51,12 @@ def currency_recording(file_name, column_header, recording_days, time_interval):
     # column header - column name - text separated by ;
     # recordind_days - how many days works recording, integer
     # time_interval = 1 - means one record per hour in a day, 0.002 - means recording currency every ca. 3 seconds, 60 minutes = 3600 sec.
-    f = open(file_name, "w")
+    f = open(file_name, "a")
     f.write(column_header+"\n")
     print("Starting recording EUR currency ...")
+    hour_interval = int(time_interval*3600)
+    time_interval = int(24/time_interval)
     for i in range(recording_days):
-        hour_interval = int(time_interval*3600)
-        time_interval = int(24/time_interval)
         for j in range(time_interval):
             currency_records = write_currency(wrap_currency(urlEUR, xpathEUR), wrap_currency(urlUSD, xpathUSD), wrap_currency(urlCHF, xpathCHF), wrap_currency(urlGBP, xpathGBP),wrap_currency(urlRUB, xpathRUB))
             print(currency_records)
@@ -67,7 +67,7 @@ def currency_recording(file_name, column_header, recording_days, time_interval):
     print("Stop recording EUR currency ...")
 
 
-
-currency_recording('kursy.csv','date;time;euro;usd;chf;gbp;rub',1,0.002)
+# time.sleep(33840)
+currency_recording('kursy.csv','day;date;time;euro;usd;chf;gbp;rub',30,0.001)
 
 
