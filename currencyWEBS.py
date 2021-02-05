@@ -68,6 +68,6 @@ def currency_recording(file_name, column_header, recording_days, time_interval):
 
 
 # time.sleep(33840)
-currency_recording('kursy.csv','day;date;time;euro;usd;chf;gbp;rub',30,0.001)
+currency_recording('kursy.csv','day;date;time;euro;usd;chf;gbp;rub',30,0.0833333333333333)
 
 
