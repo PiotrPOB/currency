@@ -18,11 +18,13 @@ urlGBP = 'https://internetowykantor.pl/kurs-funta/'
 urlRUB = 'https://internetowykantor.pl/kurs-rubla-rosyjskiego/'
 
 
+
 xpathEUR = '//*[@id="waluta-EUR"]/div[2]/div[4]/span[2]'
 xpathUSD = '//*[@id="waluta-USD"]/div[2]/div[4]/span[2]'
 xpathCHF = '//*[@id="waluta-CHF"]/div[2]/div[4]/span[2]'
 xpathGBP = '//*[@id="waluta-GBP"]/div[2]/div[4]/span[2]'
 xpathRUB = '//*[@id="waluta-RUB"]/div[2]/div[4]/span[2]'
+
 
 
 # changing format of data string
@@ -35,6 +37,7 @@ def wrap_currency(url, xpath):
     text_web[1]='.'
     text_web = "".join(text_web)
     return text_web
+
 
 # bulding of data frame
 def write_currency(*args):
